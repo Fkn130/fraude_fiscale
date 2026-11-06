@@ -1,8 +1,8 @@
 <?php
-    require "bdd.php";
+require __DIR__ . '/bdd.php';
 
-    $sql = 'SELECT even_jeux_video , date_heure_even FROM Evenement';
-    $resultats = mysqli_query($mysql, $sql);
-    
-    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+$sql = 'SELECT even_jeux_video, date_heure_even FROM Evenement';
+$resultats = mysqli_query($mysqli, $sql);
+
+$rows = mysqli_fetch_all($resultats, MYSQLI_ASSOC);
 ?>

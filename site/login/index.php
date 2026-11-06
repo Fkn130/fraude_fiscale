@@ -11,7 +11,7 @@
         include_once "../../script/table_event.php";
 
         foreach ($rows as $row) {
-            printf($row["even_jeux_video"], $row["date_heure_even"]);
+            echo $row["even_jeux_video"] . " - " . $row["date_heure_even"] . "<br>";
         }
     ?>
 </body>
