@@ -1,12 +1,12 @@
 <?php
 require "bdd.php";  // manque le fichier pour la connexion a la bdd
 $bouton = $_POST['connect'];
-$mail = $_POST['email'];
+$email = $_POST['email'];
 $password =$_POST['password'];
 
 if ($bouton == 1){
 
-    $sql ="SELECT count(*) as nb FROM user WHERE mail = '$mail' AND mdp=SHA('$password')";
+    $sql ="SELECT count(*) as nb FROM user WHERE mail = '$email' AND mdp=SHA('$password')";
     $resultats = mysqli_query($mysql, $sql);
 
     while ($ligne = mysqli_fetch_assoc($resultats)) {
@@ -14,7 +14,7 @@ if ($bouton == 1){
     if ($ligne['nb'] == 1) { 
         session_start();
 
-        if (strpos($mail, '--') !== false) {
+        if (strpos($email, '--') !== false) {
             echo "programme arrêté";
             exit();
         }
@@ -29,16 +29,16 @@ if ($bouton == 1){
 }
 }
 else {
-    $sql ="SELECT count(*) as nb FROM user WHERE email = '$mail'";
+    $sql ="SELECT count(*) as nb FROM user WHERE mail = '$email'";
     $resultats = mysqli_query($mysql, $sql);
-    if ( 'email' == $mail){
+    if ( 'email' == $email){
         echo "email deja utilisé";
 
     }
 
 else {
 
-    $sql = "INSERT INTO user (email, mdp) VALUES ('$mail', SHA('$password'))";
+    $sql = "INSERT INTO user (mail, mdp) VALUES ('$email', SHA('$password'))";
     $resultats = mysqli_query($mysql, $sql);
     header('Location: http://localhost/Media_php/media.php');
 
