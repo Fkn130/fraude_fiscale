@@ -20,7 +20,7 @@ if ($bouton == 1) {
             }
 
             echo 'connecté';
-            header('Location: blabla.php'); //a changer plus tard
+            header('Location: /site/index.php'); //a changer plus tard
 
         } else {
             echo 'pas connecté';
