@@ -6,11 +6,11 @@
     <title>Evenement JV</title>
 </head>
 <body>
-    <H1>Bonjour, bienvenuuu dans le tournoi du jeu vidéo !</H1>
+    <H1>Bonjour, bienvenu dans le tournoi du jeu vidéo !</H1>
     <nav>
         <ul>
-            <a href="site/login/index.php">Accueil</a>
-            <a href="site/login/page_connexion.php">Connexion</a>
+            <a href="index.php">Accueil</a>
+            <a href="page_connexion.php">Connexion</a>
         </ul>
     </nav>
 </body>
