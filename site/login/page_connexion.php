@@ -16,7 +16,7 @@
 <br>
 <br>
 <body class="mon-element">
-    <form method="post" action="login.php" class = "login">
+    <form method="post" action="/script/login.php" class = "login">
          identifiant 
         <input type = "mail"required name ="email"/>
         <br>
@@ -28,6 +28,7 @@
         <button name = "connect" type = "submit" value = "2"> créer un compte </button>
 
     </form>
+
 
 
 </body>

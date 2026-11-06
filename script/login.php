@@ -20,7 +20,7 @@ if ($bouton == 1) {
             }
 
             echo 'connecté';
-            header('Location: blabla.php'); //a changer plus tard
+            header('Location: /site/index.php'); //a changer plus tard
 
         } else {
             echo 'pas connecté';
@@ -36,7 +36,7 @@ if ($bouton == 1) {
 
         $sql = "INSERT INTO user (mail, mdp) VALUES ('$email', SHA('$password'))";
         $resultats = mysqli_query($mysql, $sql);
-        header('Location: blabla.php');//a changer plus tard
+        header('Location: /site/index.php');//a changer plus tard
 
 
     }
