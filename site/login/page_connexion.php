@@ -6,6 +6,13 @@
      <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+<h1>Connexion</h1>
+<nav>
+    <ul>
+        <a href="index.php">Accueil</a>
+        <a href="page_connexion.php">Connexion</a>
+    </ul>
+</nav>
 <body class="mon-element">
     <form method="post" action="/script/login.php" class = "login">
          identifiant 
@@ -15,7 +22,7 @@
         <input type = "password"required name="password"/>
         <br>    
         
-        <button name = "connect" type = "submit" value = "1" > se connecter </button>
+        <button name = "connect" type = "submit" value = "1" > se connecter </button><br>
         <button name = "connect" type = "submit" value = "2"> créer un compte </button>
 
     </form>
