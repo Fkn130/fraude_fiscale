@@ -6,6 +6,6 @@
     <title>Evenement JV</title>
 </head>
 <body>
-    <H1>Bondour, bienvenuuu dans li tournwa di jou vidio !</H1>
+    <H1>Bonjour, bienvenuuu dans le tournoi du jeu vidéo !</H1>
 </body>
 </html>
