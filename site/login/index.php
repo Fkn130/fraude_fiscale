@@ -1,5 +1,5 @@
 <?php
-include_once "header.php"
+include_once "element/header.php"
 ?>
 <body>
     <H1>Bonjour, bienvenu dans le tournoi du jeu vidéo !</H1>
@@ -11,7 +11,7 @@ include_once "header.php"
     </nav>
 
     <?php
-        include_once "table_event.php";
+        include_once "script/table_event.php";
 
         foreach ($rows as $row) {
             printf($row["even_jeux_video"], $row["date_heure_even"]);
