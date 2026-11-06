@@ -9,7 +9,7 @@
 <br>
 <br>
 <body class="mon-element">
-    <form method="post" action="/script/login.php" class = "login">
+    <form method="post" action="../../script/login.php" class = "login">
          identifiant 
         <input type = "mail"required name ="email"/>
         <br>
