@@ -6,7 +6,7 @@ $password = $_POST['password'];
 
 if ($bouton == 1) {
 
-    $sql = "SELECT count(*) as nb FROM user WHERE mail = '$email' AND mdp=SHA('$password')";
+    $sql = "SELECT count(*) as nb FROM Utilisateurs WHERE adress_mail = '$email' AND mot_de_passe=SHA('$password')";
     $resultats = mysqli_query($mysql, $sql);
 
     while ($ligne = mysqli_fetch_assoc($resultats)) {
@@ -27,14 +27,14 @@ if ($bouton == 1) {
         }
     }
 } else {
-    $sql = "SELECT count(*) as nb FROM user WHERE mail = '$email'";
+    $sql = "SELECT count(*) as nb FROM Utilisateurs WHERE adress_mail = '$email'";
     $resultats = mysqli_query($mysql, $sql);
-    if ('email' == $email) {
+    if ('adress_mail' == $email) {
         echo "email deja utilisé";
 
     } else {
 
-        $sql = "INSERT INTO user (mail, mdp) VALUES ('$email', SHA('$password'))";
+        $sql = "INSERT INTO Utilisateurs (adress_mail, mot_de_passe) VALUES ('$email', SHA('$password'))";
         $resultats = mysqli_query($mysql, $sql);
         header('Location: ../site/login/index.php');//a changer plus tard
 
