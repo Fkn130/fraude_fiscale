@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
-</head>
+<?php
+    include_once "../../element/header.php";
+?>
 <h1>Connexion</h1>
-<nav>
-    <ul>
-        <a href="index.php">Accueil</a>
-        <a href="page_connexion.php">Connexion</a>
-    </ul>
-</nav>
+<?php
+
+    include_once "../../element/nav.php";
+?>
 <br>
 <br>
 <body class="mon-element">

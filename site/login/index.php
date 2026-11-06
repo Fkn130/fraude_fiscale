@@ -1,17 +1,14 @@
 <?php
-include_once "element/header.php"
+    include_once "../../element/header.php";
 ?>
 <body>
-    <H1>Bonjour, bienvenu dans le tournoi du jeu vidéo !</H1>
-    <nav>
-        <ul>
-            <a href="index.php">Accueil</a>
-            <a href="page_connexion.php">Connexion</a>
-        </ul>
-    </nav>
+    <h1>Bonjour, bienvenu dans le tournoi du jeu vidéo !</h1>
+    <?php
+    include_once "../../element/nav.php";
+    ?>
 
     <?php
-        include_once "script/table_event.php";
+        include_once "../../script/table_event.php";
 
         foreach ($rows as $row) {
             printf($row["even_jeux_video"], $row["date_heure_even"]);

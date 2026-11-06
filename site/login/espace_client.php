@@ -1,12 +1,15 @@
 <?php
-    include_once "element/header.php"
+    include_once "../../element/header.php";
 ?>
 <body>
     <h1>Client</h1>
+    <?php
+    include_once "../../element/nav.php";
+    ?>
     <input type="text" placeholder="Rechercher un événement" id="searchInput" onkeyup="searchEvents()">
     <div id="eventList">
         <?php
-            include_once "script/table_event.php";
+            include_once "../../script/table_event.php";
 
             foreach ($rows as $row) {
                 printf($row["even_jeux_video"], $row["date_heure_even"]);
