@@ -6,6 +6,13 @@
      <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+<h1>Connexion</h1>
+<nav>
+    <ul>
+        <a href="index.php">Accueil</a>
+        <a href="page_connexion.php">Connexion</a>
+    </ul>
+</nav>
 <body class="mon-element">
     <form method="post" action="login.php" class = "login">
          identifiant 
