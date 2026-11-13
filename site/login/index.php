@@ -7,20 +7,16 @@ include_once "../../element/header.php";
 <br>
 
     <h2>Liste des inscriptions aux événements</h2>
-<br>
     <div class="liste-inscriptions">
         <?php
-        // Inclure la connexion à la base de données
-        include_once "../../script/bdd.php";
+         // Inclure la liste des événements depuis la base de données
+        include_once "../../script/table_event.php";;
         ?>
         <h2>S'inscrire à un événement</h2>
 
         <div class="liste-evenements">
             <input type="text" id="nom_evenement" name="nom_evenement" placeholder="Nom de l'événement" required><br><br>
         <?php
-        // Inclure la liste des événements depuis la base de données
-        include_once "../../script/table_event.php";
-
         if (!empty($rows)) {
             foreach ($rows as $row) {
                 echo "<div class='carte-evenement' style='border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;'>";
