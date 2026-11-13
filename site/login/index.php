@@ -7,38 +7,22 @@ include_once "../../element/header.php";
     <?php
     include_once "../../element/nav.php";
     ?>
-=======
-    <h1>Bonjour, bienvenu dans le tournoi du jeu vidéo !</h1>
-    <?php include_once "../../element/nav.php"; ?>
-<br>
->>>>>>> 3578e1dd8edd1ddc98724c9702455ed82c4620ab
+
 
     <h2>Liste des inscriptions aux événements</h2>
+<br>
     <div class="liste-inscriptions">
         <?php
-         // Inclure la liste des événements depuis la base de données
-        include_once "../../script/table_event.php";;
+        // Inclure la connexion à la base de données
+        include_once "../../script/bdd.php";
         ?>
         <h2>S'inscrire à un événement</h2>
 
         <div class="liste-evenements">
             <input type="text" id="nom_evenement" name="nom_evenement" placeholder="Nom de l'événement" required><br><br>
         <?php
-<<<<<<< HEAD
         // Inclure la liste des événements depuis la base de données
         include_once "../../script/table_event.php";
-<<<<<<< HEAD
-        echo '<table class ="table">
-                <tr>
-                    <th class="tete_tableau"><p>Horaire</p></th>
-                    <th class="tete_tableau"<p>Événement</p></th>
-                    <th class="tete_tableau"><p></p></th>
-                </tr>';
-        foreach ($rows as $row) {
-            echo "<tr> <td>" . $row["date_heure_even"] . 
-                        "<td>" .$row["even_jeux_video"] .
-                        "<td>" . "<input type=\"button\" value=\"s'inscrire\">
-                    </tr>";
 =======
 
 =======
