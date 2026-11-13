@@ -5,7 +5,7 @@ include_once "../../element/header.php";
     <h1>Bonjour, bienvenu dans le tournoi du jeu vidéo !</h1>
     <?php include_once "../../element/nav.php"; ?>
 <br>
-<br>
+
     <h2>Liste des inscriptions aux événements</h2>
 <br>
     <div class="liste-inscriptions">
