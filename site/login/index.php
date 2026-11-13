@@ -2,7 +2,6 @@
 include_once "../../element/header.php";
 ?>
 <body>
-<<<<<<< HEAD
     <h1>Bonjour, bienvenue dans le tournoi du jeu vidéo !</h1>
     <?php
     include_once "../../element/nav.php";
