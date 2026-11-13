@@ -6,6 +6,7 @@
     <?php
     include_once "../../element/nav.php";
     ?>
+    <br>
     <input type="text" placeholder="Rechercher un événement" id="searchInput" onkeyup="searchEvents()">
     <div id="eventList">
         <?php
