@@ -1,4 +1,7 @@
-<?php include_once "element/header.php"; ?>
+<?php 
+    include_once "../../element/header.php"; 
+    require "../../script/bdd.php";  
+?>
 
 <body>
 
@@ -9,7 +12,7 @@
     <?php 
         // Requete d'affichage de la gestion des elements 
         $requete = "SELECT * FROM Evenement";
-        $resultat = mysqli_query($connexion, $requete);
+        $resultat = mysqli_query($mysqli, $requete);
 
         if($resultat) {
             // affichage du resultat
