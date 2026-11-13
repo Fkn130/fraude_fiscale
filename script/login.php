@@ -1,5 +1,6 @@
 <?php
 require "bdd.php";  // manque le fichier pour la connexion a la bdd
+require '../log/log.php';
 $bouton = $_POST['connect'];
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -40,6 +41,7 @@ if ($bouton == 1) {
             }
 
             echo 'connecté';
+             Logger::info('utilisateur '.$email.' connecté');
             header('Location: ../site/login/index.php'); //a changer plus tard
 
         } else {
