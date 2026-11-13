@@ -39,16 +39,7 @@
     if (isset($_SESSION['id_utilisateur'])) {
         $id_client = $_SESSION['id_utilisateur'];
 
-        // Requête pour récupérer uniquement les réservations de ce client
-        $sql = "SELECT e.even_jeux_video, e.date_heure_even 
-                FROM inscription i
-                JOIN evenement e ON i.id_evenement = e.id
-                WHERE i.id_utilisateur = :id_client
-                ORDER BY e.date_heure_even DESC";
-
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(['id_client' => $id_client]);
-        $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
 
         if (!empty($reservations)) {
             foreach ($reservations as $res) {
@@ -60,8 +51,6 @@
         } else {
             echo "<p>Vous n'avez aucune réservation enregistrée.</p>";
         }
-    } else {
-        echo "<p>Veuillez vous connecter pour voir vos anciennes réservations.</p>";
     }
     ?>
 </section>
