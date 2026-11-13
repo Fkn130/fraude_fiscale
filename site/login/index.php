@@ -51,5 +51,8 @@ include_once "../../element/header.php";
             </div>';
         ?>
     </div>
+<?php
+    include_once "../../element/nav.php";
+?>
 </body>
 </html>
