@@ -1,4 +1,4 @@
-<?php include_once "element/header.php" ?>
+<?php include_once "element/header.php"; ?>
 
 <body>
 
@@ -14,7 +14,7 @@
         if($resultat) {
             // affichage du resultat
             while($row = mysqli_fetch_assoc($resultat)){
-                echo "<div class= liste-item>";   
+                echo "<div class='liste-item'>";   
                 echo "<h2>" . $row['even_jeux_video'] . " - " . $row['date_heure_even'] . "</h2>";
                 echo "</div>";
 
