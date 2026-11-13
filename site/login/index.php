@@ -17,10 +17,10 @@ include_once "../../element/header.php";
 
         <!-- Formulaire d'inscription sur la page d'accueil -->
         <form action="traitement_inscription.php" method="POST">
-        <label for="nom_evenement">Nom de l''événement :</label><br>
+        <label for="nom_evenement">Nom de l'événement :</label><br>
         <input type="text" id="nom_evenement" name="nom_evenement" placeholder="Nom de l'événement" required><br><br>
 
-        <label for="date_evenement">Date de l''événement :</label><br>
+        <label for="date_evenement">Date de l'événement :</label><br>
         <input type="date" id="date_evenement" name="date_evenement" required><br><br>
 
         <button type="submit">Inscription à l'événement</button>
