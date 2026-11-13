@@ -5,7 +5,7 @@
     $password = 'Lghnvbn148'; 
     
 // Connexion MySQLi
-$mysqli = new mysqli($host, $user, $password, $schema);
+$mysqli = new mysqli($host, $user, $password, $dbname);
 if ($mysqli->connect_error) {
     die('Erreur de connexion MySQLi : ' . $mysqli->connect_error);
 }
