@@ -29,7 +29,7 @@
         <h2>Pouvoir s'inscrire à un événement</h2>
         <form action="traitement_inscription.php" method="POST">
             <label for="nom_evenement">Nom de l'événement :</label><br>
-            <input type="text" id="nom_evenement" name="nom_evenement" placeholder="Nom de l'événement" required><br><br>[cite: 2]
+            <input type="text" id="nom_evenement" name="nom_evenement" placeholder="Nom de l'événement" required><br><br>
 
             <label for="date_evenement">Date de l'événement :</label><br>
             <input type="date" id="date_evenement" name="date_evenement" required><br><br>
