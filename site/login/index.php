@@ -4,9 +4,10 @@ include_once "../../element/header.php";
 <body>
     <h1>Bonjour, bienvenu dans le tournoi du jeu vidéo !</h1>
     <?php include_once "../../element/nav.php"; ?>
-
+<br>
+<br>
     <h2>Liste des inscriptions aux événements</h2>
-
+<br>
     <div class="liste-inscriptions">
         <?php
         // Inclure la connexion à la base de données
@@ -22,7 +23,7 @@ include_once "../../element/header.php";
         <label for="date_evenement">Date de l''événement :</label><br>
         <input type="date" id="date_evenement" name="date_evenement" required><br><br>
 
-        <button type="submit">Inscription à l''événement</button>
+        <button type="submit">Inscription à l'événement</button>
     </form>
 </body>
 </html>
