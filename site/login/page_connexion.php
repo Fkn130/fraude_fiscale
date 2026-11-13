@@ -10,19 +10,15 @@
 <br>
 <body class="mon-element">
     <form method="post" action="../../script/login.php" class = "login">
-         identifiant 
+         identifiant: 
         <input type = "mail"required name ="email"/>
         <br>
-         mot de passe 
+         mot de passe: 
         <input type = "password"required name="password"/>
         <br>    
         
         <button name = "connect" type = "submit" value = "1" > se connecter </button><br>
         <button name = "connect" type = "submit" value = "2"> créer un compte </button>
-
     </form>
-
-
-
 </body>
 </html>
