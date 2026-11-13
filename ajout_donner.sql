@@ -1,4 +1,15 @@
 INSERT INTO Utilisateurs (id, nom, prenom, adress_mail, identifiant, mot_de_passe) VALUES
+('', '', '', '', '', ''),
+('', '', '', '', '', ''),
+('', '', '', '', '', ''),
+('', '', '', '', '', ''),
+('', '', '', '', '', ''),
+('', '', '', '', '', ''),
+('', '', '', '', '', ''),
+('', '', '', '', '', '');
+
+/*sql avec donne de rudy*/
+INSERT INTO Utilisateurs (id, nom, prenom, adress_mail, identifiant, mot_de_passe) VALUES
 (1, 'Dupont', 'Lucas', 'lucas.dupont@gmail.com', 'lucasdu59', 'mdp123'),
 (2, 'Martin', 'Emma', 'emma.martin@gmail.com', 'emmamartin', 'emma456'),
 (3, 'Bernard', 'Hugo', 'hugo.bernard@gmail.com', 'hugobernard', 'hugo789'),
@@ -24,7 +35,7 @@ INSERT INTO Admin (id, creer_event, organiser_event, planifier_event) VALUES
 (1, 'Oui', 'Oui', 'Oui'),
 (2, 'Oui', 'Oui', 'Oui');
 
-INSERT INTO Evenement (id, even_jeux_video, date_heure_even, id_1) VALUES
+INSERT INTO Evenement (id_evenement, even_jeux_video, date_heure_even, id) VALUES
 (1, 'Tournoi FIFA 26', '2026-11-15 14:00:00', 1),
 (2, 'Tournoi Mario Kart World', '2026-11-20 15:00:00', 1),
 (3, 'Competition Fortnite', '2026-11-25 16:00:00', 2),
@@ -32,7 +43,7 @@ INSERT INTO Evenement (id, even_jeux_video, date_heure_even, id_1) VALUES
 (5, 'Competition Rocket League', '2026-12-05 14:30:00', 1),
 (6, 'Tournoi Super Smash Bros', '2026-12-10 15:00:00', 2);
 
-INSERT INTO sinscire (id, id_1) VALUES
+INSERT INTO sinscire (id_evenement,id) VALUES
 (1, 3),
 (1, 4),
 (1, 5),
