@@ -1,0 +1,23 @@
+.day{
+    --text: #000000;
+    --gray: #D1D1D1;
+    --button: #000000;
+    --text_button: #FFFFFF;
+    
+}
+.night{
+    --text: #FFFFFF;
+    --gray: #D1D1D1;
+    --button: #FFFFFF; 
+    --text_button: #000000;
+}
+
+.table{
+    margin: 10vw;
+
+}
+.tete_tableau{
+    background-color: var(--gray);
+    text-align: center;
+    font-style: var(--text);
+}

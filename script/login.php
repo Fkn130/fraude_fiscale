@@ -4,6 +4,23 @@ $bouton = $_POST['connect'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 
+// Une fois le mot de passe vérifié pour l'utilisateur ($user)
+$id_user = $user['id'];
+
+// Vérifier si cet utilisateur est présent dans la table Admin
+$sql_admin = "SELECT id FROM Admin WHERE id = :id";
+$stmt_admin = $pdo->prepare($sql_admin);
+$stmt_admin->execute(['id' => $id_user]);
+$isAdmin = $stmt_admin->fetch();
+
+if ($isAdmin) {
+    $_SESSION['is_admin'] = true;
+} else {
+    $_SESSION['is_admin'] = false;
+}
+
+$_SESSION['id_utilisateur'] = $id_user;
+
 if ($bouton == 1) {
 
     $sql = "SELECT count(*) as nb FROM utilisateurs WHERE adress_mail = ? AND mot_de_passe=SHA(?)";

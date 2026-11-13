@@ -2,9 +2,11 @@
 include_once "../../element/header.php";
 ?>
 <body>
-    <h1>Bonjour, bienvenu dans le tournoi du jeu vidéo !</h1>
-    <?php include_once "../../element/nav.php"; ?>
-<br>
+    <h1>Bonjour, bienvenue dans le tournoi du jeu vidéo !</h1>
+    <?php
+    include_once "../../element/nav.php";
+    ?>
+
 
     <h2>Liste des inscriptions aux événements</h2>
 <br>
@@ -13,10 +15,7 @@ include_once "../../element/header.php";
         // Inclure la connexion à la base de données
         include_once "../../script/bdd.php";
         ?>
-        <h2>S'inscrire à un événement</h2>
-
-        <div class="liste-evenements">
-            <input type="text" id="nom_evenement" name="nom_evenement" placeholder="Nom de l'événement" required><br><br>
+        <br>
         <?php
         // Inclure la liste des événements depuis la base de données
         include_once "../../script/table_event.php";
