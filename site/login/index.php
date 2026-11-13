@@ -11,8 +11,8 @@ include_once "../../element/header.php";
         <?php
         // Inclure la connexion à la base de données
         include_once "../../script/bdd.php";
-
-        <h2>S''inscrire à un événement</h2>
+        ?>
+        <h2>S'inscrire à un événement</h2>
 
         <!-- Formulaire d'inscription sur la page d'accueil -->
         <form action="traitement_inscription.php" method="POST">
