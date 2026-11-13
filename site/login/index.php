@@ -10,12 +10,6 @@ include_once "../../element/header.php";
 
     <h2>Liste des inscriptions aux événements</h2>
 <br>
-    <div class="liste-inscriptions">
-        <?php
-        // Inclure la connexion à la base de données
-        include_once "../../script/bdd.php";
-        ?>
-        <br>
         <?php
         // Inclure la liste des événements depuis la base de données
         include_once "../../script/table_event.php";
