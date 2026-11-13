@@ -9,21 +9,8 @@
     <br>
     <section id="recherche-evenements">
         <input type="text" placeholder="Rechercher un événement" id="searchInput" onkeyup="searchEvents()">
-        
-        <div id="eventList">
-            <?php
-            include_once "../../script/table_event.php";
-
-            if (!empty($rows)) {
-                foreach ($rows as $row) {
-                    echo "<div>" . htmlspecialchars($row["even_jeux_video"]) . " — " . htmlspecialchars($row["date_heure_even"]) . "</div>";
-                }
-            } else {
-                echo "<p>Aucun événement disponible.</p>";
-            }
-            ?>
-        </div>
     </section>
+    <br>
 
     <section id="historique-reservations">
     <h2>Récupérer les anciennes réservations</h2>
@@ -37,10 +24,7 @@
 
     // Vérifier si le client est connecté
     if (isset($_SESSION['id_utilisateur'])) {
-        $id_client = $_SESSION['id_utilisateur'];
-
-        
-
+        $id_client = $_SESSION['id_utilisateur'];    
         if (!empty($reservations)) {
             foreach ($reservations as $res) {
                 echo "<div class='carte-reservation'>";
