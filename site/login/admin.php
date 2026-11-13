@@ -17,8 +17,9 @@
                 echo "<div class= liste-item>";   
                 echo "<h2>" . $row['even_jeux_video'] . " - " . $row['date_heure_even'] . "</h2>";
                 echo "</div>";
-                
+
             }
+        }
 
 
     ?>
