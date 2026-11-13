@@ -7,23 +7,36 @@
     include_once "../../element/nav.php";
     ?>
     <br>
-    <input type="text" placeholder="Rechercher un événement" id="searchInput" onkeyup="searchEvents()">
-    <div id="eventList">
-        <?php
-            include_once "../../script/table_event.php";
+    <section id="recherche-evenements">
+        <input type="text" placeholder="Rechercher un événement" id="searchInput" onkeyup="searchEvents()">
+    </section>
+    <br>
 
-            foreach ($rows as $row) {
-                printf($row["even_jeux_video"], $row["date_heure_even"]);
+    <section id="historique-reservations">
+    <h2>Récupérer les anciennes réservations</h2>
+    <?php
+    // Démarrer la session si ce n'est pas déjà fait pour récupérer l'ID du client connecté
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    include_once "../../script/bdd.php";
+
+    // Vérifier si le client est connecté
+    if (isset($_SESSION['id_utilisateur'])) {
+        $id_client = $_SESSION['id_utilisateur'];    
+        if (!empty($reservations)) {
+            foreach ($reservations as $res) {
+                echo "<div class='carte-reservation'>";
+                echo "<strong>Événement :</strong> " . htmlspecialchars($res["even_jeux_video"]) . "<br>";
+                echo "<strong>Date :</strong> " . htmlspecialchars($res["date_heure_even"]) . "<br>";
+                echo "</div><hr>";
             }
-        ?>
-    </div>
-    <form action="traitement_inscription.php" method="POST">
-        <input type="text" name="nom_evenement" placeholder="Nom de l'événement" required><br>
-        <input type="date" name="date_evenement" required><br><br>
-         <button type="submit">Inscription à l'événement</button>
-    </form>       
+        } else {
+            echo "<p>Vous n'avez aucune réservation enregistrée.</p>";
+        }
+    }
+    ?>
+</section>
 </body>
-
 </html>
-Récup les anciennes réservations.<br>
-Pouvoir s'incrire a un evenement
