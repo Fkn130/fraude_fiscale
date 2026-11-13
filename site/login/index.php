@@ -23,10 +23,7 @@ include_once "../../element/header.php";
         <?php
         // Inclure la liste des événements depuis la base de données
         include_once "../../script/table_event.php";
-=======
 
-=======
->>>>>>> 0b560621828dbe51ea1b9720f445cecb7c6c3861
         if (!empty($rows)) {
             foreach ($rows as $row) {
                 echo "<div class='carte-evenement' style='border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;'>";
@@ -44,7 +41,6 @@ include_once "../../element/header.php";
             }
         } else {
             echo "<p>Aucun événement disponible pour le moment.</p>";
->>>>>>> 3578e1dd8edd1ddc98724c9702455ed82c4620ab
         }
         ?>
     </div>
