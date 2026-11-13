@@ -7,10 +7,6 @@
     include_once "../../element/nav.php";
     ?>
     <br>
-    <section id="recherche-evenements">
-        <input type="text" placeholder="Rechercher un événement" id="searchInput" onkeyup="searchEvents()">
-    </section>
-    <br>
 
     <section id="historique-reservations">
     <h2>Récupérer les anciennes réservations</h2>
