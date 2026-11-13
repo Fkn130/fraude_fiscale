@@ -6,7 +6,11 @@
 
     <section class="Liste_event_admin">
         
-    
+    <?php 
+        // Requete d'affichage de la gestion des elements 
+        $requete = "SELECT * FROM Evenement";
+        $resultat = mysqli_query($connexion, $requete);
+    ?>
 
 
 
