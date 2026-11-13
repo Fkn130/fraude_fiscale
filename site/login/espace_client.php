@@ -17,7 +17,7 @@
         ?>
     </div>
     <form action="traitement_inscription.php" method="POST">
-        <input type="text" name="nom_evenement" placeholder="Nom de l'événement" required>
+        <input type="text" name="nom_evenement" placeholder="Nom de l'événement" required><br>
         <input type="date" name="date_evenement" required>
          <button type="submit">Inscription à l'événement</button>
     </form>       
