@@ -6,8 +6,11 @@ $password = $_POST['password'];
 
 if ($bouton == 1) {
 
-    $sql = "SELECT count(*) as nb FROM Utilisateurs WHERE adress_mail = '$email' AND mot_de_passe=SHA('$password')";
-    $resultats = mysqli_query($mysql, $sql);
+    $sql = "SELECT count(*) as nb FROM utilisateurs WHERE adress_mail = ? AND mot_de_passe=SHA(?)";
+    $stmt = mysqli_prepare($mysqli, $sql);
+    mysqli_stmt_bind_param($stmt, "ss", $email, $password);
+    mysqli_stmt_execute($stmt);
+    $resultats = mysqli_stmt_get_result($stmt);
 
     while ($ligne = mysqli_fetch_assoc($resultats)) {
 
@@ -27,20 +30,23 @@ if ($bouton == 1) {
         }
     }
 } else {
-    $sql = "SELECT count(*) as nb FROM Utilisateurs WHERE adress_mail = '$email'";
-    $resultats = mysqli_query($mysql, $sql);
+    $sql = "SELECT count(*) as nb FROM utilisateurs WHERE adress_mail = ?";
+    $stmt = mysqli_prepare($mysqli, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
+    $resultats = mysqli_stmt_get_result($stmt);
+    
     if ('adress_mail' == $email) {
         echo "email deja utilisé";
 
     } else {
 
-        $sql = "INSERT INTO Utilisateurs (adress_mail, mot_de_passe) VALUES ('$email', SHA('$password'))";
-        $resultats = mysqli_query($mysql, $sql);
+        $sql = "INSERT INTO utilisateurs (adress_mail, mot_de_passe) VALUES (?, SHA(?))";
+        $stmt = mysqli_prepare($mysqli, $sql);
+        mysqli_stmt_bind_param($stmt, "ss", $email, $password);
+        mysqli_stmt_execute($stmt);
         header('Location: ../site/login/index.php');//a changer plus tard
-
 
     }
 }
-
-
 ?>

@@ -10,10 +10,11 @@
 <br>
 <body class="mon-element">
     <form method="post" action="../../script/login.php" class = "login">
-         identifiant: 
-        <input type = "mail"required name ="email"/>
+        <label for="email">Votre e-mail :</label>
+         <input type="email" id="email" name="email" required placeholder="exemple@domaine.com">
+    
         <br>
-         mot de passe: 
+        <label for="password">Votre mot-de-passe :</label>
         <input type = "password"required name="password"/>
         <br>    
         
