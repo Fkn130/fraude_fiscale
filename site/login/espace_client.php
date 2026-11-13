@@ -24,5 +24,5 @@
 </body>
 
 </html>
-recup les ancienne reservation
-pouvoir s'incrire a un evenement
+Récup les anciennes réservations.
+Pouvoir s'incrire a un evenement
