@@ -22,7 +22,7 @@ include_once "../../element/header.php";
                 // Formulaire avec un bouton d'inscription pour cet événement précis
                 echo "<form action='traitement_inscription.php' method='POST' style='margin-top: 8px;'>";
                 // On transmet l'ID de l'événement (assurez-vous que $row['id'] correspond à votre colonne en BDD)
-                echo "<input type='hidden' name='id_evenement' value='" . $row["id"] . "'>";
+                echo "<input type='hidden' name='id_evenement' value='" . $row["id_evenement"] . "'>";
                 echo "<button type='submit'>S'inscrire à cet événement</button>";
                 echo "</form>";
                 
