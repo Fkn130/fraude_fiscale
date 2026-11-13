@@ -26,7 +26,7 @@
     </section>
 
     <section id="historique-reservations">
-    <h2>Récupérer les anciennes réservations</h2>[cite: 7]
+    <h2>Récupérer les anciennes réservations</h2>
     <?php
     // Démarrer la session si ce n'est pas déjà fait pour récupérer l'ID du client connecté
     if (session_status() == PHP_SESSION_NONE) {
