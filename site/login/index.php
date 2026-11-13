@@ -15,7 +15,6 @@ include_once "../../element/header.php";
             // Inclure la connexion à la base de données
             include_once "../../script/bdd.php";
         ?>
-<<<<<<< HEAD
         <h2>S'inscrire à un événement</h2>
 
         <div class="liste-evenements">
@@ -23,12 +22,6 @@ include_once "../../element/header.php";
             <?php
             // Inclure la liste des événements depuis la base de données
             include_once "../../script/table_event.php";
-=======
-        <br>
-        <?php
-        // Inclure la liste des événements depuis la base de données
-        include_once "../../script/table_event.php";
->>>>>>> c0a84cecd12bb995dc07665bd40ca6fe321ea4ee
 
             echo '
             <div class="table-container">
