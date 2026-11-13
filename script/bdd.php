@@ -1,7 +1,8 @@
 <?php
-    $host = "localhost";
-    $user = "root";
-    $pwd = "";
+    $host = 'ssh-lenalaravel.alwaysdata.net';
+    $dbname = 'lenalaravel_hotel_bdd'; 
+    $user = 'lenalaravel';            
+    $password = 'Lghnvbn148'; 
     $schema = "fraude_fiscal";
     
 // Connexion MySQLi

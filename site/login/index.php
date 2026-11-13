@@ -7,48 +7,30 @@ include_once "../../element/header.php";
     include_once "../../element/nav.php";
     ?>
 
-
     <h2>Liste des inscriptions aux événements</h2>
 <br>
-    <div class="liste-inscriptions">
         <?php
-            // Inclure la connexion à la base de données
-            include_once "../../script/bdd.php";
-        ?>
-        <h2>S'inscrire à un événement</h2>
+        // Inclure la liste des événements depuis la base de données
+        include_once "../../script/table_event.php";
 
-        <div class="liste-evenements">
-            <input type="text" id="nom_evenement" name="nom_evenement" placeholder="Nom de l'événement" required><br><br>
-            <?php
-            // Inclure la liste des événements depuis la base de données
-            include_once "../../script/table_event.php";
-
-            echo '
-            <div class="table-container">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="tete_tableau">Horaire</th>
-                        <th class="tete_tableau">Événement</th>
-                        <th class="tete_tableau">Inscription</th>
-                    </tr>
-                </thead>
-                <tbody>';
-
+        if (!empty($rows)) {
             foreach ($rows as $row) {
-                echo '<tr>
-                    <td>' . htmlspecialchars($row["date_heure_even"]) . '</td>
-                    <td class="nom_evenement">' . htmlspecialchars($row["even_jeux_video"]) . '</td>
-                    <td>
-                        <input type="button" class="btn-inscription" value="S\'inscrire">
-                    </td>
-                </tr>';
+                echo "<div class='carte-evenement' style='border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;'>";
+                echo "<strong>Événement :</strong> " . htmlspecialchars($row["even_jeux_video"]) . "<br>";
+                echo "<strong>Date :</strong> " . htmlspecialchars($row["date_heure_even"]) . "<br>";
+                
+                // Formulaire avec un bouton d'inscription pour cet événement précis
+                echo "<form action='traitement_inscription.php' method='POST' style='margin-top: 8px;'>";
+                // On transmet l'ID de l'événement (assurez-vous que $row['id'] correspond à votre colonne en BDD)
+                echo "<input type='hidden' name='id_evenement' value='" . $row["id"] . "'>";
+                echo "<button type='submit'>S'inscrire à cet événement</button>";
+                echo "</form>";
+                
+                echo "</div>";
             }
-
-            echo '
-                </tbody>
-            </table>
-            </div>';
+        } else {
+            echo "<p>Aucun événement disponible pour le moment.</p>";
+        }
         ?>
     </div>
 </body>
