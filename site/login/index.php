@@ -2,18 +2,24 @@
 include_once "../../element/header.php";
 ?>
 <body>
-    <h1>Bonjour, bienvenu dans le tournoi du jeu vidéo !</h1>
-    <?php include_once "../../element/nav.php"; ?>
-<br>
+    <h1>Bonjour, bienvenue dans le tournoi du jeu vidéo !</h1>
+    <?php
+    include_once "../../element/nav.php";
+    ?>
+
 
     <h2>Liste des inscriptions aux événements</h2>
+<br>
     <div class="liste-inscriptions">
         <?php
-         // Inclure la liste des événements depuis la base de données
-        include_once "../../script/table_event.php";;
+        // Inclure la connexion à la base de données
+        include_once "../../script/bdd.php";
         ?>
         <br>
         <?php
+        // Inclure la liste des événements depuis la base de données
+        include_once "../../script/table_event.php";
+
         if (!empty($rows)) {
             foreach ($rows as $row) {
                 echo "<div class='carte-evenement' style='border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;'>";
