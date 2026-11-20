@@ -92,6 +92,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         <button type="submit" class="button-add">Ajouter un événement</button>
       </form>
   </div>
+  <br>
+  <br>
 
   <table class="admin-table">
     <thead>
