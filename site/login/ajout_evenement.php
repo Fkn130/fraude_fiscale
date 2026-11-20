@@ -38,8 +38,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             $stmt = $pdo->prepare($sql);
             $stmt->execute([ $date_heure, $event_jeux,  $id, $id_evenement]);
             $msg = "L'événement $event_jeux a été ajouté avec succès !";
+             Logger::info('evenement '.$event_jeux.' ajouté');
             } catch (Exception $e) {
                 $errors[] = "Erreur lors de l'ajout : " . $e->getMessage();
+                Logger::warning('erreur '.$event_jeux.' non ajouté');
+
             }
         }
     }
@@ -49,8 +52,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             $stmt = $pdo->prepare("DELETE FROM Evenement WHERE id_evenement = ?");
             $stmt->execute([$_POST['id_evenement']]);
             $msg = "Suppression effectuée avec succès.";
+             Logger::info('évenement suprimer');
+
         } catch (Exception $e) {
             $errors[] = "Erreur lors de la suppression : " . $e->getMessage();
+             Logger::warning('Erreur lors de la suppression');
+
         }
     }
 }
