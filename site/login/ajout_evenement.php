@@ -6,6 +6,7 @@ require_once '../../script/bdd.php';
 $id_admin = $_SESSION['id'] ?? null;
 $sql = "SELECT id FROM Utilisateur WHERE id = 1";
 
+//si admin non connecté redirection vers page connexion
 if (!isset($_SESSION['id']) || !isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
     header('Location: page_connexion.php');
     exit();
@@ -22,22 +23,25 @@ $msg = '';
 // ==============================================================
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     $action = $_POST['action'];
+
     // Ajout d'un Événement
     if ($action === 'add') {
         $event_jeux= trim($_POST['even_jeux_video'] ?? '');
         $date_heure = $_POST['date_heure_event'] ?? null;
         $id= $_POST['id'] ?? null;
         $id_evenement= null;
+        // Validation des champs
     if (empty($event_jeux) || empty($date_heure)) {
             $errors[] = "Tous les champs sont obligatoires.";    
     }
     if (empty($errors)) {
         try {
-            // INSERTION
+            // INSERTION des données dans la base de données
             $sql = "INSERT INTO Evenement(date_heure, event_jeux_video, id, id_evenment) VALUES (?, ?, ?, ?)";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([ $date_heure, $event_jeux,  $id, $id_evenement]);
             $msg = "L'événement $event_jeux a été ajouté avec succès !";
+            //log de donnée en donnant les infos
              Logger::info('evenement '.$event_jeux.' ajouté');
             } catch (Exception $e) {
                 $errors[] = "Erreur lors de l'ajout : " . $e->getMessage();
@@ -46,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             }
         }
     }
-    // SUPPRESSION
+    // SUPPRESSION des données dans la base de données
     if ($action === 'delete' && isset($_POST['id_evenement'])) {
         try {
             $stmt = $pdo->prepare("DELETE FROM Evenement WHERE id_evenement = ?");
@@ -56,6 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 
         } catch (Exception $e) {
             $errors[] = "Erreur lors de la suppression : " . $e->getMessage();
+            //log de données supprimer en erreur 
              Logger::warning('Erreur lors de la suppression');
 
         }
@@ -91,6 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 
         <label>Nom événement :</label>
         <input type="text" name="nom" required>
+        <br>
 
         <label>Date de heure :</label>
         <input type="datetime-local" name="date_heure" required>      

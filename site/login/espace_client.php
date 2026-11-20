@@ -15,7 +15,7 @@
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-
+    // Inclure la connexion à la base de données
     include_once "../../script/bdd.php";
 
     // Vérifier si le client est connecté
@@ -29,6 +29,7 @@
                 echo "</div><hr>";
             }
         } else {
+            // Si aucune réservation n'est trouvée pour le client
             echo "<p>Vous n'avez aucune réservation enregistrée.</p>";
         }
     }
