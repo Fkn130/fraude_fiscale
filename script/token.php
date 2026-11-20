@@ -35,7 +35,11 @@ function cree_token($email, $password)
     setcookie("tokenJWT", $dataToken, time() + 900);
 }
 
-
+function base64urlDecode($data)
+{
+    $data = strtr($data, '-_', '+/');
+    return base64_decode($data);
+}
 function verif_token()
 {
     $sel = "FEeh4zi1YhsZ3jr5hc7fq899bc2";
@@ -43,12 +47,6 @@ function verif_token()
     if (isset($_COOKIE['tokenJWT'])) {
 
         $tokenJWT = $_COOKIE['tokenJWT'];
-
-        function base64urlDecode($data)
-        {
-            $data = strtr($data, '-_', '+/');
-            return base64_decode($data);
-        }
 
         // Sépare le token
         $part = explode(".", $tokenJWT);
@@ -74,15 +72,18 @@ function verif_token()
                 return $part;
 
             } else {
-                header('../affichage/page_login.php');
+                header("Location: ../affichage/page_login.php");
+                exit();
             }
 
         } else {
-            header('../affichage/page_login.php');
+            header("Location: ../affichage/page_login.php");
+            exit();
         }
 
     } else {
-        header('../affichage/page_login.php');
+        header("Location: ../affichage/page_login.php");
+        exit();
     }
 }
 
