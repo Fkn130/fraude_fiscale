@@ -3,26 +3,9 @@ require "bdd.php";
 require '../log/log.php';
 include_once 'token.php';
 
-session_start();
-
 $bouton = $_POST['connect'];
 $email = $_POST['email'];
 $password = $_POST['password'];
-var_dump($user);
-$id_user = $user['id'];
-
-$sql_admin = "SELECT id FROM Admin WHERE id = :id";
-$stmt_admin = $pdo->prepare($sql_admin);
-$stmt_admin->execute(['id' => $id_user]);
-$isAdmin = $stmt_admin->fetch();
-
-if ($isAdmin) {
-    $_SESSION['is_admin'] = true;
-} else {
-    $_SESSION['is_admin'] = false;
-}
-
-$_SESSION['id_utilisateur'] = $id_user;
 
 //bouton =  c'est le button se connecter
 if ($bouton == 1) {
