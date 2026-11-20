@@ -1,13 +1,3 @@
-INSERT INTO Utilisateurs (id, nom, prenom, adress_mail, identifiant, mot_de_passe) VALUES
-('', '', '', '', '', ''),
-('', '', '', '', '', ''),
-('', '', '', '', '', ''),
-('', '', '', '', '', ''),
-('', '', '', '', '', ''),
-('', '', '', '', '', ''),
-('', '', '', '', '', ''),
-('', '', '', '', '', '');
-
 /*sql avec donne de rudy*/
 INSERT INTO Utilisateurs (id, nom, prenom, adress_mail, identifiant, mot_de_passe) VALUES
 (1, 'Dupont', 'Lucas', 'lucas.dupont@gmail.com', 'lucasdu59', 'mdp123'),
