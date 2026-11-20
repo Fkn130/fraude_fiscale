@@ -1,8 +1,11 @@
 <?php
 session_start();
-require 'db.php';
+require 'bdd.php';
 
 // Vérification admin connecté
+$id_admin = $_SESSION['id'];
+$sql = "SELECT id FROM Utilisateur WHERE id = 1";
+
 if (!isset($_SESSION['id']) || !isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
     header('Location: page_connexion.php');
     exit();
@@ -11,11 +14,8 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['is_admin']) || $_SESSION['is_ad
         header('Location: admin.php');
         exit();
     }
-
 $errors = [];
 $msg = '';
-
-$id_admin = $_SESSION['id'];
 
 // ==============================================================
 // GESTION DES ACTIONS POUR AJOUT ET SUPPRIMER LES ÉVÉNEMENTS
@@ -28,11 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         $date_heure = $_POST['date_heure_event'] ?? null;
         $id= $_POST['id'] ?? null;
         $id_evenement= null;
-
     if (empty($event_jeux) || empty($date_heure)) {
             $errors[] = "Tous les champs sont obligatoires.";    
     }
-
     if (empty($errors)) {
         try {
             // INSERTION
@@ -45,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             }
         }
     }
-
     // SUPPRESSION
     if ($action === 'delete' && isset($_POST['id_evenement'])) {
         try {
@@ -58,16 +55,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Admin - Événements</title>
+  <title>Admin - Ajouter Événements</title>
 </head>
 <body>
   <div class="main-container">
-  <h1>Gestion des Événements</h1>
+  <h1>Ajout des Événements</h1>
   <?php if (!empty($errors)): ?>
       <div class="error">
           <?php foreach ($errors as $error): ?>
