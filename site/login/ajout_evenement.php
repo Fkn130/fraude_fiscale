@@ -3,7 +3,7 @@ session_start();
 require_once '../../script/bdd.php';
 
 // Vérification admin connecté
-$id_admin = $_SESSION['id'];
+$id_admin = $_SESSION['id'] ?? null;
 $sql = "SELECT id FROM Utilisateur WHERE id = 1";
 
 /*if (!isset($_SESSION['id']) || !isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
