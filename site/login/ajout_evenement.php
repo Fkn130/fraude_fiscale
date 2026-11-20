@@ -1,19 +1,19 @@
 <?php
 session_start();
-require 'bdd.php';
+require_once '../../script/bdd.php';
 
 // Vérification admin connecté
-$id_admin = $_SESSION['id'];
+$id_admin = $_SESSION['id'] ?? null;
 $sql = "SELECT id FROM Utilisateur WHERE id = 1";
 
-if (!isset($_SESSION['id']) || !isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
+/*if (!isset($_SESSION['id']) || !isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
     header('Location: page_connexion.php');
     exit();
 }
     if (!$isAdmin) {
         header('Location: admin.php');
         exit();
-    }
+    }*/
 $errors = [];
 $msg = '';
 

@@ -1,6 +1,10 @@
 <?php
-require "bdd.php";  
+require "bdd.php";
 require '../log/log.php';
+include_once 'token.php';
+
+session_start();
+
 $bouton = $_POST['connect'];
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -20,6 +24,7 @@ if ($isAdmin) {
 
 $_SESSION['id_utilisateur'] = $id_user;
 
+//bouton =  c'est le button se connecter
 if ($bouton == 1) {
 
     $sql = "SELECT count(*) as nb FROM utilisateurs WHERE adress_mail = ? AND mot_de_passe=SHA(?)";
@@ -38,21 +43,26 @@ if ($bouton == 1) {
                 exit();
             }
 
+            //création du token
+            crée_token($email, $password);
+
+
             echo 'connecté';
-             Logger::info('utilisateur '.$email.' connecté');
+            Logger::info('utilisateur ' . $email . ' connecté');
             header('Location: ../site/login/index.php'); //a changer plus tard
 
         } else {
             echo 'pas connecté';
         }
     }
-} else {
+} // crée un compte
+else {
     $sql = "SELECT count(*) as nb FROM utilisateurs WHERE adress_mail = ?";
     $stmt = mysqli_prepare($mysqli, $sql);
     mysqli_stmt_bind_param($stmt, "s", $email);
     mysqli_stmt_execute($stmt);
     $resultats = mysqli_stmt_get_result($stmt);
-    
+
     if ('adress_mail' == $email) {
         echo "email deja utilisé";
 
@@ -62,6 +72,10 @@ if ($bouton == 1) {
         $stmt = mysqli_prepare($mysqli, $sql);
         mysqli_stmt_bind_param($stmt, "ss", $email, $password);
         mysqli_stmt_execute($stmt);
+
+        //création du token
+        crée_token($email, $password);
+
         header('Location: ../site/login/index.php');//a changer plus tard
 
     }
