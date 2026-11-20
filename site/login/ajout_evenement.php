@@ -1,19 +1,19 @@
 <?php
 session_start();
-require_once '../script/bdd.php';
+require_once '../../script/bdd.php';
 
 // Vérification admin connecté
-$id_admin = $_SESSION['id'];
+$id_admin = $_SESSION['id'] ?? null;
 $sql = "SELECT id FROM Utilisateur WHERE id = 1";
 
-if (!isset($_SESSION['id']) || !isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
+/*if (!isset($_SESSION['id']) || !isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
     header('Location: page_connexion.php');
     exit();
 }
     if (!$isAdmin) {
         header('Location: admin.php');
         exit();
-    }
+    }*/
 $errors = [];
 $msg = '';
 
@@ -84,9 +84,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
           <p style="margin: 0;"><?= htmlspecialchars($msg) ?></p>
       </div>
   <?php endif; ?>
-
+<br>
   <div class="admin-form">
-      <h2>Ajouter un Événement</h2>
       <form method="POST" enctype="multipart/form-data">
         <input type="hidden" name="action" value="add" />
 
@@ -99,6 +98,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         <button type="submit" class="button-add">Ajouter un événement</button>
       </form>
   </div>
+  <br>
+  <br>
 
   <table class="admin-table">
     <thead>

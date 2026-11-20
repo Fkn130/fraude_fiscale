@@ -26,18 +26,18 @@ CREATE TABLE Admin(
 );
 
 CREATE TABLE Evenement(
-   id INT,
+   id_evenement INT,
    even_jeux_video VARCHAR(50),
    date_heure_even DATETIME,
-   id_1 INT NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES Admin(id)
+   id INT NOT NULL,
+   PRIMARY KEY(id_evenement),
+   FOREIGN KEY(id) REFERENCES Admin(id)
 );
 
 CREATE TABLE sinscire(
+   id_evenement INT,
    id INT,
-   id_1 INT,
-   PRIMARY KEY(id, id_1),
+   PRIMARY KEY(id_evenement, id),
    FOREIGN KEY(id) REFERENCES Evenement(id),
-   FOREIGN KEY(id_1) REFERENCES Spectacteur(id)
+   FOREIGN KEY(id) REFERENCES Spectacteur(id)
 );
