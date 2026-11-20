@@ -8,49 +8,63 @@ include_once "../../element/header.php";
     include_once "../../element/nav.php";
     ?>
 
+    <h2>Agenda des événements</h2>
 
-    <h2>Liste des inscriptions aux événements</h2>
-<br>
-    <div class="liste-inscriptions">
-        <?php
-            // Inclure la connexion à la base de données
-            include_once "../../script/bdd.php";
-        ?>
-        <br><br>
-            <?php
-            // Inclure la liste des événements depuis la base de données
-            include_once "../../script/table_event.php";
-            echo '
-            <div class="table-container">
-            <table class="table">
-                <thead>
+    <?php
+    include_once "../../script/bdd.php";
+
+    // Date sélectionnée par l'utilisateur (ex: 2026-11-15)
+    $date_choisie = $_GET['jour'] ?? '';
+
+    // Récupération des événements (filtrés par jour si un jour est choisi)
+    if (!empty($date_choisie)) {
+        $sql = "SELECT id_evenement, even_jeux_video, date_heure_even 
+                FROM Evenement 
+                WHERE DATE(date_heure_even) = ? 
+                ORDER BY date_heure_even ASC";
+        $stmt = mysqli_prepare($mysqli, $sql);
+        mysqli_stmt_bind_param($stmt, "s", $date_choisie);
+        mysqli_stmt_execute($stmt);
+        $resultats = mysqli_stmt_get_result($stmt);
+        $rows = mysqli_fetch_all($resultats, MYSQLI_ASSOC);
+    } else {
+        include_once "../../script/table_event.php";
+    }
+    ?>
+
+    <!-- Liste des événements du jour choisi -->
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="tete_tableau">Horaire</th>
+                    <th class="tete_tableau">Événement</th>
+                    <th class="tete_tableau">Inscription</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!empty($rows)): ?>
+                    <?php foreach ($rows as $row): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($row["date_heure_even"]) ?></td>
+                            <td class="nom_evenement"><?= htmlspecialchars($row["even_jeux_video"]) ?></td>
+                            <td>
+                                <form method="POST" action="traitement_inscription.php">
+                                    <input type="hidden" name="id_evenement" value="<?= htmlspecialchars($row["id_evenement"] ?? $row["id"] ?? '') ?>">
+                                    <button type="submit" class="btn-inscription">S'inscrire</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
                     <tr>
-                        <th class="tete_tableau">Horaire</th>
-                        <th class="tete_tableau">Événement</th>
-                        <th class="tete_tableau">Inscription</th>
+                        <td colspan="3">Aucun événement prévu pour ce jour.</td>
                     </tr>
-                </thead>
-                <tbody>';
-
-            foreach ($rows as $row) {
-                echo '<tr>
-                    <td>' . htmlspecialchars($row["date_heure_even"]) . '</td>
-                    <td class="nom_evenement">' . htmlspecialchars($row["even_jeux_video"]) . '</td>
-                    <td>
-                    <form methode="post"
-                        <input type="button" class="btn-inscription" value="'. $row["id_evenement"] .'onclick="'. inscription() .'">
-                    </td>
-                </tr>';
-            }
-
-            echo '
-                </tbody>
-            </table>
-            </div>';
-        ?>
+                <?php endif; ?>
+            </tbody>
+        </table>
     </div>
-<?php
-        include_once "../../element/footer.php";
-?>
+
+    <?php include_once "../../element/footer.php"; ?>
 </body>
 </html>
