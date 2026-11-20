@@ -1,5 +1,5 @@
 <?php
-function crée_token($email, $password)
+function cree_token($email, $password)
 {
     $mail = $email;
     $mdp = $password;
@@ -30,7 +30,7 @@ function crée_token($email, $password)
     setcookie("tokenJWT", $dataToken, time() + 900);
 }
 
-function vérif_token()
+function verif_token()
 {
     $tokenJWT = $_COOKIE['tokenJWT'];
     function base64urlDecode($tokenJWT)
@@ -41,9 +41,11 @@ function vérif_token()
     }
     $part = explode(".", $tokenJWT);
     //si le token n'a pas étais changer par l'utilisateur
+
     if ($part[0] . $part[1] == $part[2]) {
         $tokenJWT = $part[0] . $part[1] . $part[2];
         setcookie("tokenJWT", $tokenJWT, time() + 900);
+        return $part;
     } else {
         header('../affichage/page_login.php');
     }
