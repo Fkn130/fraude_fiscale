@@ -44,7 +44,7 @@ if ($bouton == 1) {
             }
 
             //création du token
-            crée_token($email, $password);
+            cree_token($email, $password);
 
 
             echo 'connecté';
@@ -74,7 +74,7 @@ else {
         mysqli_stmt_execute($stmt);
 
         //création du token
-        crée_token($email, $password);
+        cree_token($email, $password);
 
         header('Location: ../site/login/index.php');//a changer plus tard
 
