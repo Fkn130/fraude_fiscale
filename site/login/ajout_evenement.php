@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
           <p style="margin: 0;"><?= htmlspecialchars($msg) ?></p>
       </div>
   <?php endif; ?>
-
+<br>
   <div class="admin-form">
       <form method="POST" enctype="multipart/form-data">
         <input type="hidden" name="action" value="add" />
