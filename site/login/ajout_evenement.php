@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'bdd.php';
+require_once '../script/bdd.php';
 
 // Vérification admin connecté
 $id_admin = $_SESSION['id'];
