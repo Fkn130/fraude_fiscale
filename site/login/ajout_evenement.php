@@ -79,7 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
   <?php endif; ?>
 
   <div class="admin-form">
-      <h2>Ajouter un Événement</h2>
       <form method="POST" enctype="multipart/form-data">
         <input type="hidden" name="action" value="add" />
 
