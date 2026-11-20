@@ -15,14 +15,10 @@ include_once "../../element/header.php";
             // Inclure la connexion à la base de données
             include_once "../../script/bdd.php";
         ?>
-        <h2>S'inscrire à un événement</h2>
-
-        <div class="liste-evenements">
-            <input type="text" id="nom_evenement" name="nom_evenement" placeholder="Nom de l'événement" required><br><br>
+        <br><br>
             <?php
             // Inclure la liste des événements depuis la base de données
             include_once "../../script/table_event.php";
-
             echo '
             <div class="table-container">
             <table class="table">
