@@ -41,10 +41,10 @@ CREATE TABLE `admin` (
 --
 
 CREATE TABLE `evenement` (
-  `id` int(11) NOT NULL,
+  `id_evenement` int(11) NOT NULL,
   `even_jeux_video` varchar(50) DEFAULT NULL,
   `date_heure_even` datetime DEFAULT NULL,
-  `id_1` int(11) NOT NULL
+  `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -54,8 +54,8 @@ CREATE TABLE `evenement` (
 --
 
 CREATE TABLE `sinscire` (
-  `id` int(11) NOT NULL,
-  `id_1` int(11) NOT NULL
+  `id_evenement` int(11) NOT NULL,
+  `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
