@@ -38,11 +38,7 @@ include_once "../../element/header.php";
                     <td class="nom_evenement">' . htmlspecialchars($row["even_jeux_video"]) . '</td>
                     <td>
                     <form methode="post"
-<<<<<<< HEAD
                         <input type="button" class="btn-inscription" value="'. $row["id_evenement"] .'onclick="'. inscription() .'">
-=======
-                        <input type="button" class="btn-inscription" value="Inscription"'. $row["id_evenement"] .'">
->>>>>>> a73f4966eff54d587c50ccf23401e9d64dd9314d
                     </td>
                 </tr>';
             }
