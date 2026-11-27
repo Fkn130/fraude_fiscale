@@ -9,7 +9,7 @@ $password = $_POST['password'];
 //bouton =  c'est le button se connecter
 if ($bouton == 1) {
 
-    $sql = "SELECT count(*) as nb FROM utilisateurs WHERE adress_mail = ? AND mot_de_passe=SHA(?)";
+    $sql = "SELECT count(*) as nb FROM Utilisateurs WHERE adress_mail = ? AND mot_de_passe=SHA(?)";
     $stmt = mysqli_prepare($mysqli, $sql);
     mysqli_stmt_bind_param($stmt, "ss", $email, $password);
     mysqli_stmt_execute($stmt);
