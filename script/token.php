@@ -28,7 +28,7 @@
 
         $dataToken = $header . "." . $payload . "." . "$signature";
 
-        setcookie("tokenJWT", $dataToken, time()+3600+900,"/wishcord");  
+        setcookie("tokenJWT", $dataToken, time()+3600+900,"/fraude_fiscale");  
     }
 ?>
 function base64urlDecode($data)
