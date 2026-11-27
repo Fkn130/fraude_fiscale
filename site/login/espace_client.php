@@ -1,5 +1,4 @@
 <?php
-
 include_once "../../script/bdd.php";
 
 // Accès réservé aux utilisateurs connectés
@@ -12,7 +11,7 @@ if ($id_client <= 0) {
     exit;
 }
 
-// 2) Annulation d'une inscription
+// Annulation d'une inscription faite par le client
 if (($_POST['action'] ?? '') === 'supprimer' && !empty($_POST['id_evenement'])) {
     $id_evt = (int) $_POST['id_evenement'];
     $stmt = mysqli_prepare($mysqli, "DELETE FROM sinscire WHERE id = ? AND id_evenement = ?");
@@ -22,7 +21,7 @@ if (($_POST['action'] ?? '') === 'supprimer' && !empty($_POST['id_evenement'])) 
     exit;
 }
 
-// 3) Inscription (POST depuis index.php ou reprise après connexion)
+// Inscription (POST depuis index.php ou reprise après connexion)
 $id_evenement = null;
 if (!empty($_POST['id_evenement'])) {
     $id_evenement = (int) $_POST['id_evenement'];
@@ -50,7 +49,7 @@ if ($id_evenement) {
     exit;
 }
 
-// 4) Liste des inscriptions
+// Liste des inscriptions accepter par le client
 $sql = "SELECT e.id_evenement, e.even_jeux_video, e.date_heure_even
         FROM sinscrire s
         JOIN Evenement e ON e.id_evenement = s.id_evenement
