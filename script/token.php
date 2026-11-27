@@ -1,90 +1,33 @@
 <?php
-function base64urlEncode($data)
-{
-    return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
-}
 
-function cree_token($email, $password)
-{
-    $sel = "FEeh4zi1YhsZ3jr5hc7fq899bc2";
-
-    $header = json_encode([
-        "alg" => "HS256",
-        "typ" => "JWT"
-    ]);
-
-    $payload = json_encode([
-        "mail" => $email,
-        "mdp" => $password
-    ]);
-
-    $header = base64urlEncode($header);
-    $payload = base64urlEncode($payload);
-
-    $signature = hash_hmac(
-        "sha256",
-        $header . "." . $payload,
-        $sel,
-        true
-    );
-
-    $signature = base64urlEncode($signature);
-
-    $dataToken = $header . "." . $payload . "." . $signature;
-
-    setcookie("tokenJWT", $dataToken, time() + 900);
-}
-
-
-function verif_token()
-{
-    $sel = "FEeh4zi1YhsZ3jr5hc7fq899bc2";
-
-    if (isset($_COOKIE['tokenJWT'])) {
-
-        $tokenJWT = $_COOKIE['tokenJWT'];
-
-        function base64urlDecode($data)
+    function create_Token($mail , $mdp){
+        date_default_timezone_set('Europe/Paris');
+        $sel = "FEeh4zi1YhsZ3jr5hc7fq899bc2";
+        function base64urlEncode($data)
         {
-            $data = strtr($data, '-_', '+/');
-            return base64_decode($data);
+            return rtrim(strtr(base64_encode($data), '+/', '-_'));
         }
 
-        // Sépare le token
-        $part = explode(".", $tokenJWT);
+        $header = json_encode([ 
+            "alg" => "HS256",
+            "typ" => "JWT"
+        ]);
 
-        if (count($part) == 3) {
+        $header = base64urlEncode($header);
 
-            // Recrée la signature
-            $signature = hash_hmac(
-                "sha256",
-                $part[0] . "." . $part[1],
-                $sel,
-                true
-            );
+        $payload = json_encode([
+            "mail" => $mail,
+            "mdp" => $mdp
+        ]);
 
-            $signature = base64urlEncode($signature);
+        $payload = base64urlEncode($payload);
 
-            // Vérifie la signature
-            if ($signature == $part[2]) {
+        $signature = hash_hmac("sha256", $header . "." . $payload, $sel, true);
 
-                // Met à jour le cookie
-                setcookie("tokenJWT", $tokenJWT, time() + 900);
+        $signature = base64urlEncode($signature);
 
-                return $part;
+        $dataToken = $header . "." . $payload . "." . "$signature";
 
-            } else {
-                header('../affichage/page_login.php');
-            }
-
-        } else {
-            header('../affichage/page_login.php');
-        }
-
-    } else {
-        header('../affichage/page_login.php');
+        setcookie("tokenJWT", $dataToken, time()+3600+900,"/fraude_fiscale");  
     }
-}
-
-
 ?>
