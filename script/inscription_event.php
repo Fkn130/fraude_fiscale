@@ -3,7 +3,7 @@ function inscription()
 {
 
     include_once 'bdd.php';
-    include_once 'script/verif_token.php';
+    include_once 'token.php';
 
     $part = verif_token();
 
@@ -21,7 +21,5 @@ function inscription()
     $sql = "INSERT INTO `sinscire`(`id`, `id_1`) VALUES" . $resultats . "," . $event;
     $stmt = mysqli_prepare($mysqli, $sql);
     mysqli_stmt_execute($stmt);
-    
-    header()
 }
 ?>
