@@ -49,18 +49,16 @@ include_once "../../element/header.php";
     <?php include_once "../../element/nav.php"; ?>
     <br>
 
-    <section id="historique-reservations">
-        <h2>Mes inscriptions</h2>
-        <?php if (!empty($reservations)): ?>
-            <?php foreach ($reservations as $res): ?>
-                <div class="carte-reservation">
-                    <strong>Événement :</strong> <?= htmlspecialchars($res["even_jeux_video"]) ?><br>
-                    <strong>Date :</strong> <?= htmlspecialchars($res["date_heure_even"]) ?><br>
-                </div><hr>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p>Vous n'avez aucune inscription enregistrée.</p>
-        <?php endif; ?>
-    </section>
-</body>
-</html>
+    <section id="historique-reservations" style="direction: ltr; text-align: left;">
+    <h2>Mes inscriptions</h2>
+    <?php if (!empty($reservations)): ?>
+        <?php foreach ($reservations as $res): ?>
+            <div class="carte-reservation">
+                <strong>Événement :</strong> <?= htmlspecialchars($res["even_jeux_video"]) ?><br>
+                <strong>Date :</strong> <?= htmlspecialchars($res["date_heure_even"]) ?><br>
+            </div><hr>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p>Vous n'avez aucune inscription enregistrée.</p>
+    <?php endif; ?>
+</section>
