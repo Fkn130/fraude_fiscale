@@ -2,7 +2,6 @@
 require "bdd.php";
 require '../log/log.php';
 include_once 'token.php';
-
 $bouton = $_POST['connect'];
 $email = $_POST['email'];
 $password = $_POST['password'];

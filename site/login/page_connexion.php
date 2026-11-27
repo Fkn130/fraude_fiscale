@@ -21,5 +21,7 @@
         <button name = "connect" type = "submit" value = "1" > se connecter </button><br>
         <button name = "connect" type = "submit" value = "2"> créer un compte </button>
     </form>
+
+     <?php include_once "../../element/footer.php"; ?>
 </body>
 </html>
