@@ -1,40 +1,36 @@
 <?php
-function base64urlEncode($data)
-{
-    return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
-}
 
-function cree_token($email, $password)
-{
-    $sel = "FEeh4zi1YhsZ3jr5hc7fq899bc2";
+    function create_Token($mail , $mdp){
+        date_default_timezone_set('Europe/Paris');
+        $sel = "FEeh4zi1YhsZ3jr5hc7fq899bc2";
+        function base64urlEncode($data)
+        {
+            return rtrim(strtr(base64_encode($data), '+/', '-_'));
+        }
 
-    $header = json_encode([
-        "alg" => "HS256",
-        "typ" => "JWT"
-    ]);
+        $header = json_encode([ 
+            "alg" => "HS256",
+            "typ" => "JWT"
+        ]);
 
-    $payload = json_encode([
-        "mail" => $email,
-        "mdp" => $password
-    ]);
+        $header = base64urlEncode($header);
 
-    $header = base64urlEncode($header);
-    $payload = base64urlEncode($payload);
+        $payload = json_encode([
+            "mail" => $mail,
+            "mdp" => $mdp
+        ]);
 
-    $signature = hash_hmac(
-        "sha256",
-        $header . "." . $payload,
-        $sel,
-        true
-    );
+        $payload = base64urlEncode($payload);
 
-    $signature = base64urlEncode($signature);
+        $signature = hash_hmac("sha256", $header . "." . $payload, $sel, true);
 
-    $dataToken = $header . "." . $payload . "." . $signature;
+        $signature = base64urlEncode($signature);
 
-    setcookie("tokenJWT", $dataToken, time() + 900);
-}
+        $dataToken = $header . "." . $payload . "." . "$signature";
 
+        setcookie("tokenJWT", $dataToken, time()+3600+900,"/wishcord");  
+    }
+?>
 function base64urlDecode($data)
 {
     $data = strtr($data, '-_', '+/');
