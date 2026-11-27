@@ -1,4 +1,5 @@
 <?php
+
 include_once "../../script/bdd.php";
 
 // Accès réservé aux utilisateurs connectés
@@ -51,7 +52,7 @@ if ($id_evenement) {
 
 // 4) Liste des inscriptions
 $sql = "SELECT e.id_evenement, e.even_jeux_video, e.date_heure_even
-        FROM sinscire s
+        FROM sinscrire s
         JOIN Evenement e ON e.id_evenement = s.id_evenement
         WHERE s.id = ?
         ORDER BY e.date_heure_even ASC";
