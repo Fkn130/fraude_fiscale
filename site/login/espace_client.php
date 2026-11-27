@@ -1,4 +1,5 @@
 <?php
+
 include_once "../../script/bdd.php";
 
 $id_client = $_SESSION['id'] ?? $_SESSION['id_utilisateur'] ?? null;
@@ -49,7 +50,7 @@ include_once "../../element/header.php";
     <?php include_once "../../element/nav.php"; ?>
     <br>
 
-    <section id="historique-reservations" style="direction: ltr; text-align: left;">
+    <section id="historique-reservations">
     <h2>Mes inscriptions</h2>
     <?php if (!empty($reservations)): ?>
         <?php foreach ($reservations as $res): ?>
