@@ -49,7 +49,7 @@ include_once "../../element/header.php";
                             <td><?= htmlspecialchars($row["date_heure_even"]) ?></td>
                             <td class="nom_evenement"><?= htmlspecialchars($row["even_jeux_video"]) ?></td>
                             <td>
-                                <form method="POST" action="inscription_event.php">
+                                <form method="POST" action="../script/inscription_event.php">
                                     <input type="hidden" name="id_evenement" value="<?= htmlspecialchars($row["id_evenement"] ?? $row["id"] ?? '') ?>">
                                     <button type="submit" class="btn-inscription">S'inscrire</button>
                                 </form>
