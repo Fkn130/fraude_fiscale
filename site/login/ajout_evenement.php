@@ -3,18 +3,13 @@ session_start();
 require_once '../../script/bdd.php';
 
 // Vérification admin connecté
-$id_admin = $_SESSION['id'] ?? null;
-$sql = "SELECT id FROM Utilisateur WHERE id = 1";
+$id_admin = $_SESSION['id'] ?? 1;
 
 //si admin non connecté redirection vers page connexion
-if (!isset($_SESSION['id']) || !isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-    header('Location: page_connexion.php');
+if (!isset($_SESSION['id']) || ($_SESSION['is_admin'] ?? false) !== true) {
+    header('Location: page_connexion.php'); // page de connexion, pas admin.php
     exit();
 }
-    if (!$isAdmin) {
-        header('Location: admin.php');
-        exit();
-    }
 $errors = [];
 $msg = '';
 
@@ -26,45 +21,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 
     // Ajout d'un Événement
     if ($action === 'add') {
-        $event_jeux= trim($_POST['even_jeux_video'] ?? '');
-        $date_heure = $_POST['date_heure_event'] ?? null;
-        $id= $_POST['id'] ?? null;
-        $id_evenement= null;
-        // Validation des champs
-    if (empty($event_jeux) || empty($date_heure)) {
-            $errors[] = "Tous les champs sont obligatoires.";    
-    }
-    if (empty($errors)) {
-        try {
-            // INSERTION des données dans la base de données
-            $sql = "INSERT INTO Evenement(date_heure, event_jeux_video, id, id_evenment) VALUES (?, ?, ?, ?)";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute([ $date_heure, $event_jeux,  $id, $id_evenement]);
-            $msg = "L'événement $event_jeux a été ajouté avec succès !";
-            //log de donnée en donnant les infos
-             Logger::info('evenement '.$event_jeux.' ajouté');
-            } catch (Exception $e) {
-                $errors[] = "Erreur lors de l'ajout : " . $e->getMessage();
-                Logger::warning('erreur '.$event_jeux.' non ajouté');
+        $nom = trim($_POST['nom'] ?? '');
+        $date_heure = $_POST['date_heure'] ?? '';
 
+        if ($nom === '' || $date_heure === '') {
+            $errors[] = "Tous les champs sont obligatoires.";
+        }
+
+        if (empty($errors)) {
+            $date_sql = str_replace('T', ' ', $date_heure) . ':00';
+            //Insere les données pour ajouter les evenements
+            $stmt = $mysqli->prepare("INSERT INTO Evenement (even_jeux_video, date_heure_even, id) VALUES (?, ?, ?)");
+            if ($stmt) {
+                // s = string, s = string, i = integer
+                $stmt->bind_param("ssi", $nom, $date_sql, $id_admin);
+                if ($stmt->execute()) {
+                    $msg = "L'événement $nom a été ajouté avec succès !";
+                    if (class_exists('Logger')) Logger::info('evenement '.$nom.' ajouté');
+                } else {
+                    $errors[] = "Erreur lors de l'ajout : " . $stmt->error;
+                    if (class_exists('Logger')) Logger::warning('erreur '.$nom.' non ajouté');
+                }
+                $stmt->close();
+            } else {
+                $errors[] = "Erreur de préparation : " . $mysqli->error;
             }
         }
     }
-    // SUPPRESSION des données dans la base de données
+
+    // SUPPRESSION
     if ($action === 'delete' && isset($_POST['id_evenement'])) {
-        try {
-            $stmt = $pdo->prepare("DELETE FROM Evenement WHERE id_evenement = ?");
-            $stmt->execute([$_POST['id_evenement']]);
-            $msg = "Suppression effectuée avec succès.";
-             Logger::info('évenement suprimer');
+        $id_evenement = (int) $_POST['id_evenement'];
 
-        } catch (Exception $e) {
-            $errors[] = "Erreur lors de la suppression : " . $e->getMessage();
-            //log de données supprimer en erreur 
-             Logger::warning('Erreur lors de la suppression');
-
+        $stmt = $mysqli->prepare("DELETE FROM Evenement WHERE id_evenement = ?");
+        if ($stmt) {
+            $stmt->bind_param("i", $id_evenement);
+            if ($stmt->execute()) {
+                $msg = "Suppression effectuée avec succès.";
+                if (class_exists('Logger')) Logger::info('évènement supprimé');
+            } else {
+                $errors[] = "Erreur lors de la suppression : " . $stmt->error;
+                if (class_exists('Logger')) Logger::warning('Erreur lors de la suppression');
+            }
+            $stmt->close();
+        } else {
+            $errors[] = "Erreur de préparation : " . $mysqli->error;
         }
     }
+}
+
+// LECTURE des événements (version mysqli)
+$evenements = [];
+$result = $mysqli->query("SELECT * FROM Evenement ORDER BY date_heure_even ASC");
+if ($result) {
+    $evenements = $result->fetch_all(MYSQLI_ASSOC);
 }
 ?>
 <!DOCTYPE html>
@@ -114,27 +124,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         <th>Date de l'événement</th>
       </tr>
     </thead>
-    <tbody>
-      <?php if (!empty($id_evenement)): ?>
-          <?php foreach($id_evenement as $e): ?>
-          <tr>
-            <td><?= htmlspecialchars($e['nom'] ?? '') ?></td>
-            <td><?= htmlspecialchars($e['date_heure'] ?? 'Non spécifiée') ?></td>
+   <tbody>
+    <?php if (!empty($evenements)): ?>
+        <?php foreach ($evenements as $e): ?>
+        <tr>
+            <td><?= htmlspecialchars($e['even_jeux_video']) ?></td>
+            <td><?= htmlspecialchars($e['date_heure_even']) ?></td>
             <td>
-              <form method="POST" style="display:inline;" onsubmit="return confirm('Confirmer la suppression de cet événement ?');">
-                <input type="hidden" name="action" value="delete" />
-                <input type="hidden" name="id_evenement" value="<?= $e['id_evenement'] ?>" />
-                <button type="submit" class="btn-suppr">Supprimer</button>
-              </form>
+                <form method="POST" style="display:inline;" onsubmit="return confirm('Confirmer la suppression de cet événement ?');">
+                    <input type="hidden" name="action" value="delete" />
+                    <input type="hidden" name="id_evenement" value="<?= (int)$e['id_evenement'] ?>" />
+                    <button type="submit" class="btn-suppr">Supprimer</button>
+                </form>
             </td>
-          </tr>
-          <?php endforeach; ?>
-      <?php else: ?>
-          <tr>
-              <td colspan="5" style="text-align: center;">Aucun événement enregistré pour le moment.</td>
-          </tr>
-      <?php endif; ?>
-    </tbody>
+        </tr>
+        <?php endforeach; ?>
+    <?php else: ?>
+    <tr>
+      <td colspan="3" style="text-align:center;">Aucun événement enregistré pour le moment.</td>
+    </tr>
+  <?php endif; ?>
+</tbody>
   </table>
   <p style="text-align:center; margin-top:30px;">
     <a href="index.php" style="text-decoration:none; color:#B52C24; font-weight:bold;">Retour à l'accueil</a>
