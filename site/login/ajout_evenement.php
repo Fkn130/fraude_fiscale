@@ -6,7 +6,7 @@ require_once '../../script/bdd.php';
 $id_admin = $_SESSION['id'] ?? null;
 $sql = "SELECT id FROM Utilisateur WHERE id = 1";
 
-//si admin non connecté redirection vers page connexion
+/*si admin non connecté redirection vers page connexion
 if (!isset($_SESSION['id']) || !isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
     header('Location: page_connexion.php');
     exit();
@@ -14,7 +14,7 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['is_admin']) || $_SESSION['is_ad
     if (!$isAdmin) {
         header('Location: admin.php');
         exit();
-    }
+    }*/
 $errors = [];
 $msg = '';
 
