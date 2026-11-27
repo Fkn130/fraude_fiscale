@@ -9,4 +9,5 @@ Avant de commencer, un mcd a été mis en place :
 ![mcd](mcd.png "Le mcd")
 
 
-Le projet est un site web codé en php avec une base de donnée MySQL
+Le dépôt contient déjà un MCD, une base de données, une connexion à MySQL ainsi que plusieurs pages destinées aux clients et aux administrateurs. La présentation générale du site et certaines fonctionnalités sont donc dejà present
+
