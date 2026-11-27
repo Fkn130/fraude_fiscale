@@ -1,8 +1,8 @@
 <?php
-
+    $sel = "FEeh4zi1YhsZ3jr5hc7fq899bc2";
     function create_Token($mail , $mdp){
         date_default_timezone_set('Europe/Paris');
-        $sel = "FEeh4zi1YhsZ3jr5hc7fq899bc2";
+        
         function base64urlEncode($data)
         {
             return rtrim(strtr(base64_encode($data), '+/', '-_'));
@@ -22,7 +22,7 @@
 
         $payload = base64urlEncode($payload);
 
-        $signature = hash_hmac("sha256", $header . "." . $payload, $sel, true);
+        $signature = hash_hmac("sha256", $header . "." . $payload, $GLOBALS['sel'], true);
 
         $signature = base64urlEncode($signature);
 

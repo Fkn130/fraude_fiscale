@@ -3,14 +3,13 @@ function inscription()
 {
 
     include_once 'bdd.php';
-    include_once 'token.php';
+    include_once 'verif_token.php';
 
     $part = verif_token();
 
-    $part[1] = json_decode(base64urlDecode($part[1]), true);
+    $mail = $part["mail"];
+    $mdp = $part["mdp"];
 
-    $mail = $part[1]["mail"];
-    $mdp = $part[1]["mdp"];
     $event = $_POST['id_evenement'];
 
     $sql = "SELECT id FROM utilisateurs WHERE adress_mail =" . $mail . " AND mdp =" . $mdp;
@@ -21,5 +20,8 @@ function inscription()
     $sql = "INSERT INTO `sinscire`(`id`, `id_1`) VALUES" . $resultats . "," . $event;
     $stmt = mysqli_prepare($mysqli, $sql);
     mysqli_stmt_execute($stmt);
+
+    header('Location: ../site/login/espace_client.php');
+
 }
 ?>
