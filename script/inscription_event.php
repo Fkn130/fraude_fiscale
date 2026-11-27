@@ -3,7 +3,7 @@ function inscription()
 {
 
     include_once 'bdd.php';
-    include_once 'token.php';
+    include_once 'script/verif_token.php';
 
     $part = verif_token();
 
