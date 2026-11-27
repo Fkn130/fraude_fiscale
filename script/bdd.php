@@ -1,8 +1,8 @@
 <?php
-    $host = 'mysql-lenalaravel.alwaysdata.net';
-    $dbname = 'lenalaravel_hotel_bdd'; 
-    $user = 'lenalaravel';            
-    $password = 'Lghnvbn148'; 
+    $host = 'local_host';
+    $dbname = 'fraude_fiscal'; 
+    $user = 'root';            
+    $password = ''; 
     
 // Connexion MySQLi
 $mysqli = new mysqli($host, $user, $password, $dbname);
