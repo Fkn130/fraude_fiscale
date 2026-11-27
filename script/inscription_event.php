@@ -21,5 +21,7 @@ function inscription()
     $sql = "INSERT INTO `sinscire`(`id`, `id_1`) VALUES" . $resultats . "," . $event;
     $stmt = mysqli_prepare($mysqli, $sql);
     mysqli_stmt_execute($stmt);
+    
+    header()
 }
 ?>

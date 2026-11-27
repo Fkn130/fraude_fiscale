@@ -24,7 +24,7 @@ function verif_token()
         return $header;
         
     } else {
-        header('../affichage/page_login.php');
+        header('../site/page_connexion.php');
     }
 }
 
